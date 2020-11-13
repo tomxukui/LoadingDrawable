@@ -34,6 +34,7 @@ import app.dinus.com.loadingdrawable.R;
 import app.dinus.com.loadingdrawable.render.LoadingRenderer;
 
 public class ElectricFanLoadingRenderer extends LoadingRenderer {
+
     private static final Interpolator LINEAR_INTERPOLATOR = new LinearInterpolator();
     private static final Interpolator MATERIAL_INTERPOLATOR = new FastOutSlowInInterpolator();
     private static final Interpolator DECELERATE_INTERPOLATOR = new DecelerateInterpolator();
@@ -298,6 +299,7 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
     protected void computeRender(float renderProgress) {
         if (renderProgress < DECELERATE_DURATION_PERCENTAGE) {
             mProgress = DECELERATE_INTERPOLATOR.getInterpolation(renderProgress / DECELERATE_DURATION_PERCENTAGE) * DECELERATE_DURATION_PERCENTAGE;
+
         } else {
             mProgress = ACCELERATE_INTERPOLATOR.getInterpolation((renderProgress - DECELERATE_DURATION_PERCENTAGE) / ACCELERATE_DURATION_PERCENTAGE) * ACCELERATE_DURATION_PERCENTAGE + DECELERATE_DURATION_PERCENTAGE;
         }
@@ -306,13 +308,11 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
     @Override
     protected void setAlpha(int alpha) {
         mPaint.setAlpha(alpha);
-
     }
 
     @Override
     protected void setColorFilter(ColorFilter cf) {
         mPaint.setColorFilter(cf);
-
     }
 
     @Override
@@ -328,6 +328,7 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
         float insetXs;
         if (mCenterRadius <= 0 || minEdge < 0) {
             insetXs = (float) Math.ceil(mCenterRadius / 2.0f);
+
         } else {
             insetXs = mCenterRadius;
         }
@@ -339,6 +340,7 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
         if (progress < mNextLeafCreateThreshold) {
             return;
         }
+
         mNextLeafCreateThreshold += LEAF_CREATE_DURATION_INTERVAL;
 
         LeafHolder leafHolder = new LeafHolder();
@@ -407,15 +409,14 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
         //Third-order Bezier curve formula: B(t) = point0 * (1-t)^3 + 3 * point1 * t * (1-t)^2 + 3 * point2 * t^2 * (1-t) + point3 * t^3
         @Override
         public PointF evaluate(float fraction, PointF point0, PointF point3) {
-
             float t = fraction;
             float tLeft = 1.0f - t;
-
             float x = (float) (point0.x * Math.pow(tLeft, 3) + 3 * point1.x * t * Math.pow(tLeft, 2) + 3 * point2.x * Math.pow(t, 2) * tLeft + point3.x * Math.pow(t, 3));
             float y = (float) (point0.y * Math.pow(tLeft, 3) + 3 * point1.y * t * Math.pow(tLeft, 2) + 3 * point2.y * Math.pow(t, 2) * tLeft + point3.y * Math.pow(t, 3));
 
             return new PointF(x, y);
         }
+
     }
 
     private class BezierListener implements ValueAnimator.AnimatorUpdateListener {
@@ -433,9 +434,11 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
                     (int) (point.x + mLeafDrawable.getIntrinsicWidth()), (int) (point.y + mLeafDrawable.getIntrinsicHeight()));
             target.mLeafRotation = target.mMaxRotation * animation.getAnimatedFraction();
         }
+
     }
 
     private class AnimEndListener extends AnimatorListenerAdapter {
+
         private LeafHolder target;
 
         public AnimEndListener(LeafHolder target) {
@@ -448,25 +451,29 @@ public class ElectricFanLoadingRenderer extends LoadingRenderer {
             mLeafHolders.remove(target);
             mCurrentLeafCount++;
         }
+
     }
 
     private class LeafHolder {
+
         public Rect mLeafRect = new Rect();
         public float mLeafRotation = 0.0f;
-
         public float mMaxRotation = mRandom.nextInt(120);
+
     }
 
     public static class Builder {
+
         private Context mContext;
 
-        public Builder(Context mContext) {
-            this.mContext = mContext;
+        public Builder(Context context) {
+            this.mContext = context;
         }
 
         public ElectricFanLoadingRenderer build() {
-            ElectricFanLoadingRenderer loadingRenderer = new ElectricFanLoadingRenderer(mContext);
-            return loadingRenderer;
+            return new ElectricFanLoadingRenderer(mContext);
         }
+
     }
+
 }

@@ -19,6 +19,7 @@ import app.dinus.com.loadingdrawable.DensityUtil;
 import app.dinus.com.loadingdrawable.render.LoadingRenderer;
 
 public class WaterBottleLoadingRenderer extends LoadingRenderer {
+
     private static final Interpolator MATERIAL_INTERPOLATOR = new FastOutSlowInInterpolator();
 
     private static final float DEFAULT_WIDTH = 200.0f;
@@ -279,13 +280,11 @@ public class WaterBottleLoadingRenderer extends LoadingRenderer {
     @Override
     protected void setAlpha(int alpha) {
         mPaint.setAlpha(alpha);
-
     }
 
     @Override
     protected void setColorFilter(ColorFilter cf) {
         mPaint.setColorFilter(cf);
-
     }
 
     @Override
@@ -307,15 +306,17 @@ public class WaterBottleLoadingRenderer extends LoadingRenderer {
     }
 
     public static class Builder {
+
         private Context mContext;
 
-        public Builder(Context mContext) {
-            this.mContext = mContext;
+        public Builder(Context context) {
+            this.mContext = context;
         }
 
         public WaterBottleLoadingRenderer build() {
-            WaterBottleLoadingRenderer loadingRenderer = new WaterBottleLoadingRenderer(mContext);
-            return loadingRenderer;
+            return new WaterBottleLoadingRenderer(mContext);
         }
+
     }
+
 }

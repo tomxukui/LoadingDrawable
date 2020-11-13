@@ -18,6 +18,7 @@ import app.dinus.com.loadingdrawable.DensityUtil;
 import app.dinus.com.loadingdrawable.render.LoadingRenderer;
 
 public class GuardLoadingRenderer extends LoadingRenderer {
+
     private static final Interpolator MATERIAL_INTERPOLATOR = new FastOutSlowInInterpolator();
     private static final Interpolator ACCELERATE_INTERPOLATOR = new AccelerateInterpolator();
     private static final Interpolator DECELERATE_INTERPOLATOR = new DecelerateInterpolator();
@@ -244,15 +245,16 @@ public class GuardLoadingRenderer extends LoadingRenderer {
     }
 
     public static class Builder {
+
         private Context mContext;
 
-        public Builder(Context mContext) {
-            this.mContext = mContext;
+        public Builder(Context context) {
+            this.mContext = context;
         }
 
         public GuardLoadingRenderer build() {
-            GuardLoadingRenderer loadingRenderer = new GuardLoadingRenderer(mContext);
-            return loadingRenderer;
+            return new GuardLoadingRenderer(mContext);
         }
     }
+
 }

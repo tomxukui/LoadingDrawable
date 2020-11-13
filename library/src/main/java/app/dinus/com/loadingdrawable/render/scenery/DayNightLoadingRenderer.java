@@ -26,6 +26,7 @@ import app.dinus.com.loadingdrawable.DensityUtil;
 import app.dinus.com.loadingdrawable.render.LoadingRenderer;
 
 public class DayNightLoadingRenderer extends LoadingRenderer {
+
     private static final Interpolator MATERIAL_INTERPOLATOR = new FastOutSlowInInterpolator();
     private static final Interpolator LINEAR_INTERPOLATOR = new LinearInterpolator();
     private static final Interpolator DECELERATE_INTERPOLATOR = new DecelerateInterpolator();
@@ -274,13 +275,11 @@ public class DayNightLoadingRenderer extends LoadingRenderer {
     @Override
     protected void setAlpha(int alpha) {
         mPaint.setAlpha(alpha);
-
     }
 
     @Override
     protected void setColorFilter(ColorFilter cf) {
         mPaint.setColorFilter(cf);
-
     }
 
     @Override
@@ -324,9 +323,9 @@ public class DayNightLoadingRenderer extends LoadingRenderer {
     }
 
     private class StarHolder {
+
         public int mAlpha;
         public PointF mCurrentPoint;
-
         public final PointF mPoint;
         public final float mFlashOffset;
         public final Interpolator mInterpolator;
@@ -342,18 +341,21 @@ public class DayNightLoadingRenderer extends LoadingRenderer {
             this.mFlashOffset = flashOffset;
             this.mInterpolator = INTERPOLATORS[mRandom.nextInt(INTERPOLATORS.length)];
         }
+
     }
 
     public static class Builder {
+
         private Context mContext;
 
-        public Builder(Context mContext) {
-            this.mContext = mContext;
+        public Builder(Context context) {
+            this.mContext = context;
         }
 
         public DayNightLoadingRenderer build() {
-            DayNightLoadingRenderer loadingRenderer = new DayNightLoadingRenderer(mContext);
-            return loadingRenderer;
+            return new DayNightLoadingRenderer(mContext);
         }
+
     }
+
 }

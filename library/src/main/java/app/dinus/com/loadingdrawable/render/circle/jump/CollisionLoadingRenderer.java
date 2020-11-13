@@ -17,6 +17,7 @@ import app.dinus.com.loadingdrawable.DensityUtil;
 import app.dinus.com.loadingdrawable.render.LoadingRenderer;
 
 public class CollisionLoadingRenderer extends LoadingRenderer {
+
     private static final Interpolator ACCELERATE_INTERPOLATOR = new AccelerateInterpolator();
     private static final Interpolator DECELERATE_INTERPOLATOR = new DecelerateInterpolator();
 
@@ -228,6 +229,7 @@ public class CollisionLoadingRenderer extends LoadingRenderer {
     }
 
     public static class Builder {
+
         private Context mContext;
 
         private int mWidth;
@@ -245,8 +247,8 @@ public class CollisionLoadingRenderer extends LoadingRenderer {
         @Size(2)
         private int[] mColors;
 
-        public Builder(Context mContext) {
-            this.mContext = mContext;
+        public Builder(Context context) {
+            this.mContext = context;
         }
 
         public Builder setWidth(int width) {
@@ -300,4 +302,5 @@ public class CollisionLoadingRenderer extends LoadingRenderer {
             return loadingRenderer;
         }
     }
+
 }

@@ -15,6 +15,7 @@ import app.dinus.com.loadingdrawable.DensityUtil;
 import app.dinus.com.loadingdrawable.render.LoadingRenderer;
 
 public class BalloonLoadingRenderer extends LoadingRenderer {
+
     private static final String PERCENT_SIGN = "%";
 
     private static final Interpolator ACCELERATE_INTERPOLATOR = new AccelerateInterpolator();
@@ -184,6 +185,7 @@ public class BalloonLoadingRenderer extends LoadingRenderer {
 
             mPaint.setTextSize(mTextSize);
             mPaint.getTextBounds(mProgressText, 0, mProgressText.length(), mProgressBounds);
+
         } else {
             float exhaleProgress = ACCELERATE_INTERPOLATOR.getInterpolation(1.0f - (renderProgress - START_INHALE_DURATION_OFFSET) / (1.0f - START_INHALE_DURATION_OFFSET));
             mCannulaBounds.offset(0, -mCannulaMaxOffsetY * exhaleProgress);
@@ -237,7 +239,6 @@ public class BalloonLoadingRenderer extends LoadingRenderer {
      * Coordinates are approximate, you have better cooperate with the designer's design draft
      */
     private Path createBalloonPath(RectF balloonRect, float progress) {
-
         Path path = new Path();
         path.moveTo(balloonRect.centerX(), balloonRect.bottom);
 
@@ -283,7 +284,6 @@ public class BalloonLoadingRenderer extends LoadingRenderer {
     @Override
     protected void setAlpha(int alpha) {
         mPaint.setAlpha(alpha);
-
     }
 
     @Override
@@ -296,15 +296,17 @@ public class BalloonLoadingRenderer extends LoadingRenderer {
     }
 
     public static class Builder {
+
         private Context mContext;
 
-        public Builder(Context mContext) {
-            this.mContext = mContext;
+        public Builder(Context context) {
+            this.mContext = context;
         }
 
         public BalloonLoadingRenderer build() {
-            BalloonLoadingRenderer loadingRenderer = new BalloonLoadingRenderer(mContext);
-            return loadingRenderer;
+            return new BalloonLoadingRenderer(mContext);
         }
+
     }
+
 }

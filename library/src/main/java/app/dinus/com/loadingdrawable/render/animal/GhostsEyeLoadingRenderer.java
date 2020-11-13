@@ -14,6 +14,7 @@ import app.dinus.com.loadingdrawable.DensityUtil;
 import app.dinus.com.loadingdrawable.render.LoadingRenderer;
 
 public class GhostsEyeLoadingRenderer extends LoadingRenderer {
+
     private Interpolator EYE_BALL_INTERPOLATOR = new EyeBallInterpolator();
     private Interpolator EYE_CIRCLE_INTERPOLATOR = new EyeCircleInterpolator();
 
@@ -246,15 +247,16 @@ public class GhostsEyeLoadingRenderer extends LoadingRenderer {
     }
 
     public static class Builder {
+
         private Context mContext;
 
-        public Builder(Context mContext) {
-            this.mContext = mContext;
+        public Builder(Context context) {
+            this.mContext = context;
         }
 
         public GhostsEyeLoadingRenderer build() {
-            GhostsEyeLoadingRenderer loadingRenderer = new GhostsEyeLoadingRenderer(mContext);
-            return loadingRenderer;
+            return new GhostsEyeLoadingRenderer(mContext);
         }
     }
+
 }

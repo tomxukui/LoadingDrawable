@@ -140,7 +140,6 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
     @Override
     protected void draw(Canvas canvas, Rect bounds) {
         int saveCount = canvas.save();
-
         RectF arcBounds = mCurrentBounds;
         arcBounds.set(bounds);
 
@@ -166,10 +165,6 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
         canvas.drawPath(createChildPath(), mPaint);
         canvas.restoreToCount(childSaveCount);
         canvas.restoreToCount(saveCount);
-
-//    canvas.drawPath(mMotherMovePath, mPaint);
-//    canvas.drawPath(mChildMovePath, mPaint);
-//    canvas.drawLine(mMotherPosition[0], mMotherPosition[1], mChildPosition[0], mChildPosition[1], mPaint);
     }
 
     private Path createMotherPath() {
@@ -337,16 +332,19 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
     }
 
     private float getMotherShapeFactor(float input) {
-
         float shapeProgress;
         if (input <= STAGE_MOTHER_FORWARD_TOP_LEFT) {
             shapeProgress = input / STAGE_MOTHER_FORWARD_TOP_LEFT;
+
         } else if (input <= STAGE_MOTHER_BACKWARD_TOP_LEFT) {
             shapeProgress = (input - STAGE_MOTHER_FORWARD_TOP_LEFT) / (STAGE_MOTHER_BACKWARD_TOP_LEFT - STAGE_MOTHER_FORWARD_TOP_LEFT);
+
         } else if (input <= STAGE_MOTHER_FORWARD_BOTTOM_LEFT) {
             shapeProgress = (input - STAGE_MOTHER_BACKWARD_TOP_LEFT) / (STAGE_MOTHER_FORWARD_BOTTOM_LEFT - STAGE_MOTHER_BACKWARD_TOP_LEFT);
+
         } else if (input <= STAGE_MOTHER_BACKWARD_BOTTOM_LEFT) {
             shapeProgress = (input - STAGE_MOTHER_FORWARD_BOTTOM_LEFT) / (STAGE_MOTHER_BACKWARD_BOTTOM_LEFT - STAGE_MOTHER_FORWARD_BOTTOM_LEFT);
+
         } else {
             shapeProgress = 1.0f;
         }
@@ -553,11 +551,14 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
 
         if (input < 0.5f) {
             result = mOvalColor;
+
         } else if (input < 0.75f) {
             float colorProgress = (input - 0.5f) / 0.2f;
             result = evaluateColorChange(colorProgress, mOvalColor, mOvalDeepColor);
+
         } else if (input < 0.85f) {
             result = mOvalDeepColor;
+
         } else {
             float colorProgress = (input - 0.9f) / 0.1f;
             result = evaluateColorChange(colorProgress, mOvalDeepColor, mOvalColor);
@@ -586,24 +587,19 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
     private float getRestLength(Path path, float startD) {
         Path tempPath = new Path();
         PathMeasure pathMeasure = new PathMeasure(path, false);
-
         pathMeasure.getSegment(startD, pathMeasure.getLength(), tempPath, true);
-
         pathMeasure.setPath(tempPath, false);
-
         return pathMeasure.getLength();
     }
 
     @Override
     protected void setAlpha(int alpha) {
         mPaint.setAlpha(alpha);
-
     }
 
     @Override
     protected void setColorFilter(ColorFilter cf) {
         mPaint.setColorFilter(cf);
-
     }
 
     @Override
@@ -611,24 +607,30 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
     }
 
     private class MotherMoveInterpolator implements Interpolator {
+
         @Override
         public float getInterpolation(float input) {
             float result;
 
             if (input <= STAGE_MOTHER_FORWARD_TOP_LEFT) {
                 result = ACCELERATE_INTERPOLATOR10.getInterpolation(input * 2.941f) / 2.941f;
+
             } else if (input <= STAGE_MOTHER_BACKWARD_TOP_LEFT) {
                 result = 0.34f + DECELERATE_INTERPOLATOR10.getInterpolation((input - 0.34f) * 6.25f) / 6.25f;
+
             } else if (input <= STAGE_MOTHER_FORWARD_BOTTOM_LEFT) {
                 result = 0.5f + ACCELERATE_INTERPOLATOR03.getInterpolation((input - 0.5f) * 6.666f) / 4.0f;
+
             } else if (input <= STAGE_MOTHER_BACKWARD_BOTTOM_LEFT) {
                 result = 0.75f + DECELERATE_INTERPOLATOR03.getInterpolation((input - 0.65f) * 5.46f) / 4.0f;
+
             } else {
                 result = 1.0f;
             }
 
             return result;
         }
+
     }
 
     private class ChildMoveInterpolator implements Interpolator {
@@ -639,18 +641,25 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
 
             if (input < STAGE_CHILD_DELAY) {
                 return 0.0f;
+
             } else if (input <= STAGE_CHILD_PRE_FORWARD_TOP_LEFT) {
                 result = DECELERATE_INTERPOLATOR10.getInterpolation((input - 0.1f) * 6.25f) / 3.846f;
+
             } else if (input <= STAGE_CHILD_FORWARD_TOP_LEFT) {
                 result = 0.26f + ACCELERATE_INTERPOLATOR10.getInterpolation((input - 0.26f) * 12.5f) / 12.5f;
+
             } else if (input <= STAGE_CHILD_PRE_BACKWARD_TOP_LEFT) {
                 result = 0.34f + DECELERATE_INTERPOLATOR08.getInterpolation((input - 0.34f) * 12.5f) / 12.5f;
+
             } else if (input <= STAGE_CHILD_BACKWARD_TOP_LEFT) {
                 result = 0.42f + ACCELERATE_INTERPOLATOR08.getInterpolation((input - 0.42f) * 12.5f) / 12.5f;
+
             } else if (input <= STAGE_CHILD_FORWARD_BOTTOM_LEFT) {
                 result = 0.5f + DECELERATE_INTERPOLATOR05.getInterpolation((input - 0.5f) * 5.0f) / 5.0f;
+
             } else if (input <= STAGE_CHILD_BACKWARD_BOTTOM_LEFT) {
                 result = 0.7f + ACCELERATE_INTERPOLATOR05.getInterpolation((input - 0.7f) * 5.0f) / 3.33f;
+
             } else {
                 result = 1.0f;
             }
@@ -660,15 +669,17 @@ public class CircleBroodLoadingRenderer extends LoadingRenderer {
     }
 
     public static class Builder {
+
         private Context mContext;
 
-        public Builder(Context mContext) {
-            this.mContext = mContext;
+        public Builder(Context context) {
+            this.mContext = context;
         }
 
         public CircleBroodLoadingRenderer build() {
-            CircleBroodLoadingRenderer loadingRenderer = new CircleBroodLoadingRenderer(mContext);
-            return loadingRenderer;
+            return new CircleBroodLoadingRenderer(mContext);
         }
+
     }
+
 }

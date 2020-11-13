@@ -25,6 +25,7 @@
             android:layout_weight="1"
             android:background="#ff9c0000"
             app:loading_renderer="SwapLoadingRenderer" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -48,6 +49,7 @@
             android:layout_weight="1"
             android:background="#ff94d0c1"
             app:loading_renderer="DanceLoadingRenderer" />
+
     </LinearLayout>
 
 </LinearLayout>

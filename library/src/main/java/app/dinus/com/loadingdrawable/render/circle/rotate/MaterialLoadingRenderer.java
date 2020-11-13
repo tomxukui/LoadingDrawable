@@ -15,6 +15,7 @@ import app.dinus.com.loadingdrawable.DensityUtil;
 import app.dinus.com.loadingdrawable.render.LoadingRenderer;
 
 public class MaterialLoadingRenderer extends LoadingRenderer {
+
     private static final Interpolator MATERIAL_INTERPOLATOR = new FastOutSlowInInterpolator();
 
     private static final int DEGREE_360 = 360;
@@ -237,6 +238,7 @@ public class MaterialLoadingRenderer extends LoadingRenderer {
     }
 
     public static class Builder {
+
         private Context mContext;
 
         private int mWidth;
@@ -248,8 +250,8 @@ public class MaterialLoadingRenderer extends LoadingRenderer {
 
         private int[] mColors;
 
-        public Builder(Context mContext) {
-            this.mContext = mContext;
+        public Builder(Context context) {
+            this.mContext = context;
         }
 
         public Builder setWidth(int width) {

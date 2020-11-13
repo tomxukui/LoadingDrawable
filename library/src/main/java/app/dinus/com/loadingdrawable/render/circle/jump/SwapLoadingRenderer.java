@@ -12,6 +12,7 @@ import app.dinus.com.loadingdrawable.DensityUtil;
 import app.dinus.com.loadingdrawable.render.LoadingRenderer;
 
 public class SwapLoadingRenderer extends LoadingRenderer {
+
     private static final Interpolator ACCELERATE_DECELERATE_INTERPOLATOR = new AccelerateDecelerateInterpolator();
 
     private static final long ANIMATION_DURATION = 2500;
@@ -160,6 +161,7 @@ public class SwapLoadingRenderer extends LoadingRenderer {
     }
 
     public static class Builder {
+
         private Context mContext;
 
         private int mWidth;
@@ -174,8 +176,8 @@ public class SwapLoadingRenderer extends LoadingRenderer {
 
         private int mColor;
 
-        public Builder(Context mContext) {
-            this.mContext = mContext;
+        public Builder(Context context) {
+            this.mContext = context;
         }
 
         public Builder setWidth(int width) {

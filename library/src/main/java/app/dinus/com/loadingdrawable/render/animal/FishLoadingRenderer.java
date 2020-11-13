@@ -18,6 +18,7 @@ import app.dinus.com.loadingdrawable.DensityUtil;
 import app.dinus.com.loadingdrawable.render.LoadingRenderer;
 
 public class FishLoadingRenderer extends LoadingRenderer {
+
     private Interpolator FISH_INTERPOLATOR = new FishInterpolator();
 
     private static final float DEFAULT_PATH_FULL_LINE_SIZE = 7.0f;
@@ -247,15 +248,17 @@ public class FishLoadingRenderer extends LoadingRenderer {
     }
 
     public static class Builder {
+
         private Context mContext;
 
-        public Builder(Context mContext) {
-            this.mContext = mContext;
+        public Builder(Context context) {
+            this.mContext = context;
         }
 
         public FishLoadingRenderer build() {
-            FishLoadingRenderer loadingRenderer = new FishLoadingRenderer(mContext);
-            return loadingRenderer;
+            return new FishLoadingRenderer(mContext);
         }
+
     }
+
 }

@@ -17,6 +17,7 @@ import app.dinus.com.loadingdrawable.DensityUtil;
 import app.dinus.com.loadingdrawable.render.LoadingRenderer;
 
 public class GearLoadingRenderer extends LoadingRenderer {
+
     private static final Interpolator ACCELERATE_INTERPOLATOR = new AccelerateInterpolator();
     private static final Interpolator DECELERATE_INTERPOLATOR = new DecelerateInterpolator();
 
@@ -220,6 +221,7 @@ public class GearLoadingRenderer extends LoadingRenderer {
     }
 
     public static class Builder {
+
         private Context mContext;
 
         private int mWidth;
@@ -234,8 +236,8 @@ public class GearLoadingRenderer extends LoadingRenderer {
         private int mGearCount;
         private int mGearSwipeDegrees;
 
-        public Builder(Context mContext) {
-            this.mContext = mContext;
+        public Builder(Context context) {
+            this.mContext = context;
         }
 
         public Builder setWidth(int width) {

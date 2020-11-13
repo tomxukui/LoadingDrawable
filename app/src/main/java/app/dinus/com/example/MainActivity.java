@@ -1,62 +1,77 @@
 package app.dinus.com.example;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    private Button mBtnGoods;
-    private Button mBtnAnimal;
-    private Button mBtnScenery;
-    private Button mBtnCircleJump;
-    private Button mBtnShapeChange;
-    private Button mBtnCircleRotate;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mBtnGoods = (Button) findViewById(R.id.goods);
-        mBtnAnimal = (Button) findViewById(R.id.animal);
-        mBtnScenery = (Button) findViewById(R.id.scenery);
-        mBtnCircleJump = (Button) findViewById(R.id.circle_jump);
-        mBtnShapeChange = (Button) findViewById(R.id.shape_change);
-        mBtnCircleRotate = (Button) findViewById(R.id.circle_rotate);
+        findViewById(R.id.goods).setOnClickListener(new View.OnClickListener() {
 
-        mBtnGoods.setOnClickListener(this);
-        mBtnAnimal.setOnClickListener(this);
-        mBtnScenery.setOnClickListener(this);
-        mBtnCircleJump.setOnClickListener(this);
-        mBtnShapeChange.setOnClickListener(this);
-        mBtnCircleRotate.setOnClickListener(this);
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, GoodsActivity.class);
+                startActivity(intent);
+            }
+
+        });
+
+        findViewById(R.id.animal).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AnimalActivity.class);
+                startActivity(intent);
+            }
+
+        });
+
+        findViewById(R.id.scenery).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SceneryActivity.class);
+                startActivity(intent);
+            }
+
+        });
+
+        findViewById(R.id.circle_jump).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CircleJumpActivity.class);
+                startActivity(intent);
+            }
+
+        });
+
+        findViewById(R.id.shape_change).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ShapeChangeActivity.class);
+                startActivity(intent);
+            }
+
+        });
+
+        findViewById(R.id.circle_rotate).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CircleRotateActivity.class);
+                startActivity(intent);
+            }
+
+        });
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.shape_change:
-                ShapeChangeActivity.startActivity(this);
-                break;
-            case R.id.goods:
-                GoodsActivity.startActivity(this);
-                break;
-            case R.id.animal:
-                AnimalActivity.startActivity(this);
-                break;
-            case R.id.scenery:
-                SceneryActivity.startActivity(this);
-                break;
-            case R.id.circle_jump:
-                CircleJumpActivity.startActivity(this);
-                break;
-            case R.id.circle_rotate:
-                CircleRotateActivity.startActivity(this);
-                break;
-            default:
-                break;
-        }
-    }
 }

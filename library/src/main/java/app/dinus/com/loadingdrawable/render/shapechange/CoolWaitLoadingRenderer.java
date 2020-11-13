@@ -18,6 +18,7 @@ import app.dinus.com.loadingdrawable.DensityUtil;
 import app.dinus.com.loadingdrawable.render.LoadingRenderer;
 
 public class CoolWaitLoadingRenderer extends LoadingRenderer {
+
     private final Interpolator ACCELERATE_INTERPOLATOR08 = new AccelerateInterpolator(0.8f);
     private final Interpolator ACCELERATE_INTERPOLATOR10 = new AccelerateInterpolator(1.0f);
     private final Interpolator ACCELERATE_INTERPOLATOR15 = new AccelerateInterpolator(1.5f);
@@ -235,19 +236,16 @@ public class CoolWaitLoadingRenderer extends LoadingRenderer {
             float bottomStartDistance = mOriginStartDistance + mWaitPathLength * 0.58f + mWaitPathLength * 0.17f * bottomStartTrimProgress;
             mWaitPathMeasure.getSegment(bottomStartDistance, bottomEndDistance, mCurrentBottomWaitPath, true);
         }
-
     }
 
     @Override
     protected void setAlpha(int alpha) {
         mPaint.setAlpha(alpha);
-
     }
 
     @Override
     protected void setColorFilter(ColorFilter cf) {
         mPaint.setColorFilter(cf);
-
     }
 
     @Override
@@ -255,15 +253,17 @@ public class CoolWaitLoadingRenderer extends LoadingRenderer {
     }
 
     public static class Builder {
+
         private Context mContext;
 
-        public Builder(Context mContext) {
-            this.mContext = mContext;
+        public Builder(Context context) {
+            this.mContext = context;
         }
 
         public CoolWaitLoadingRenderer build() {
-            CoolWaitLoadingRenderer loadingRenderer = new CoolWaitLoadingRenderer(mContext);
-            return loadingRenderer;
+            return new CoolWaitLoadingRenderer(mContext);
         }
+
     }
+
 }

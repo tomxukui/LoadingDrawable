@@ -1,1 +1,3 @@
-include ':app', ':library'
+rootProject.name = 'LoadingDrawable'
+include ':app'
+include ':library'

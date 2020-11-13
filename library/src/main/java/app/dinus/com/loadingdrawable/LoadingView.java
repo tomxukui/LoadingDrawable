@@ -11,6 +11,7 @@ import app.dinus.com.loadingdrawable.render.LoadingRenderer;
 import app.dinus.com.loadingdrawable.render.LoadingRendererFactory;
 
 public class LoadingView extends ImageView {
+
     private LoadingDrawable mLoadingDrawable;
 
     public LoadingView(Context context) {

@@ -7,22 +7,23 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 
 import app.dinus.com.loadingdrawable.DensityUtil;
 
 public abstract class LoadingRenderer {
+
     private static final long ANIMATION_DURATION = 1333;
     private static final float DEFAULT_SIZE = 56.0f;
 
-    private final ValueAnimator.AnimatorUpdateListener mAnimatorUpdateListener
-            = new ValueAnimator.AnimatorUpdateListener() {
+    private final ValueAnimator.AnimatorUpdateListener mAnimatorUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
+
         @Override
         public void onAnimationUpdate(ValueAnimator animation) {
             computeRender((float) animation.getAnimatedValue());
             invalidateSelf();
         }
+
     };
 
     /**
@@ -105,8 +106,8 @@ public abstract class LoadingRenderer {
 
     private void setupAnimators() {
         mRenderAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
-        mRenderAnimator.setRepeatCount(Animation.INFINITE);
-        mRenderAnimator.setRepeatMode(Animation.RESTART);
+        mRenderAnimator.setRepeatCount(ValueAnimator.INFINITE);
+        mRenderAnimator.setRepeatMode(ValueAnimator.RESTART);
         mRenderAnimator.setDuration(mDuration);
         //fuck you! the default interpolator is AccelerateDecelerateInterpolator
         mRenderAnimator.setInterpolator(new LinearInterpolator());

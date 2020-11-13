@@ -30,6 +30,7 @@ public class LoadingView extends ImageView {
             LoadingRenderer loadingRenderer = LoadingRendererFactory.createLoadingRenderer(context, loadingRendererId);
             setLoadingRenderer(loadingRenderer);
             ta.recycle();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -55,10 +56,9 @@ public class LoadingView extends ImageView {
     @Override
     protected void onVisibilityChanged(View changedView, int visibility) {
         super.onVisibilityChanged(changedView, visibility);
-
-        final boolean visible = visibility == VISIBLE && getVisibility() == VISIBLE;
-        if (visible) {
+        if (visibility == VISIBLE && getVisibility() == VISIBLE) {
             startAnimation();
+
         } else {
             stopAnimation();
         }
@@ -75,4 +75,5 @@ public class LoadingView extends ImageView {
             mLoadingDrawable.stop();
         }
     }
+
 }

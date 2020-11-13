@@ -7,12 +7,12 @@ import android.graphics.Rect;
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
 
-import app.dinus.com.loadingdrawable.render.LoadingRenderer;
-
 public class LoadingDrawable extends Drawable implements Animatable {
+
     private final LoadingRenderer mLoadingRender;
 
     private final Callback mCallback = new Callback() {
+
         @Override
         public void invalidateDrawable(Drawable d) {
             invalidateSelf();
@@ -27,6 +27,7 @@ public class LoadingDrawable extends Drawable implements Animatable {
         public void unscheduleDrawable(Drawable d, Runnable what) {
             unscheduleSelf(what);
         }
+
     };
 
     public LoadingDrawable(LoadingRenderer loadingRender) {
@@ -86,4 +87,5 @@ public class LoadingDrawable extends Drawable implements Animatable {
     public int getIntrinsicWidth() {
         return (int) this.mLoadingRender.mWidth;
     }
+
 }

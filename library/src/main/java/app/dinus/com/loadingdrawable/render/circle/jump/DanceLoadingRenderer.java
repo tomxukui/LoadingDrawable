@@ -16,6 +16,7 @@ import app.dinus.com.loadingdrawable.DensityUtil;
 import app.dinus.com.loadingdrawable.render.LoadingRenderer;
 
 public class DanceLoadingRenderer extends LoadingRenderer {
+
     private static final Interpolator MATERIAL_INTERPOLATOR = new FastOutSlowInInterpolator();
     private static final Interpolator ACCELERATE_INTERPOLATOR = new AccelerateInterpolator();
     private static final Interpolator DECELERATE_INTERPOLATOR = new DecelerateInterpolator();
